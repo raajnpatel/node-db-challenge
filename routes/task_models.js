@@ -12,11 +12,11 @@ function find() {
     return db("tasks");
 }
 
-function findById(id) {
-    return db("tasks")
-        .where({ id })
-        .first();
-}
+// function findById(id) {
+//     return db("tasks")
+//         .where({ id })
+//         .first();
+// }
 
 function findAllByProjectId(id) {
     return db("tasks")
@@ -28,4 +28,12 @@ function add(task, project_id) {
     return db('tasks', 'id')
         .insert(task)
         .then(id => findById(...id));
+}
+
+function findById(id){
+    return db
+        .select('project_name', 'project_description', 'task_description', 'task_note')
+        .from('projects')
+        .join('tasks', 'tasks.project_id', '=', 'project_id')
+        .where('project_id', '=', id)
 }
