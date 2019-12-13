@@ -1,7 +1,7 @@
 
 exports.seed = function(knex) {
     // Deletes ALL existing entries
-    return knex('tasks').del()
+    return knex('tasks').truncate()
         .then(function () {
             // Inserts seed entries
             return knex('tasks').insert([
@@ -13,7 +13,7 @@ exports.seed = function(knex) {
                 },
                 {
                     task_description: "Whites and Colors? Myths! WASH IT ALL!",
-                    task_note: "But keep those towels seperate.",
+                    task_note: "But keep those towels separate.",
                     completed: false,
                     project_id: 1
                 },
